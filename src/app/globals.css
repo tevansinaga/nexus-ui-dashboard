@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  /* Menghubungkan variabel CSS ke sistem tema Tailwind v4 */
+  --color-background: var(--bg-main);
+  --color-foreground: var(--text-main);
+}
+
+:root {
+  /* Light Mode Colors */
+  --bg-main: #f8fafc;
+  --text-main: #0f172a;
+  
+  /* Status Colors (Optional) */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --bg-main: #020617;
+  --text-main: #ffffff;
+  
+  --card-bg: rgba(15, 23, 42, 0.4);
+  --card-border: #1e293b;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    @apply antialiased transition-colors duration-300;
+  }
+
+  /* Transisi yang lebih aman dan spesifik */
+  h1, h2, h3, h4, p, span, div, section, nav, aside, footer, header, button, input {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  /* Utility khusus untuk kartu dashboard agar otomatis berubah */
+  .dashboard-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    @apply rounded-2xl shadow-sm transition-all duration-300;
+  }
+}
+
+/* --- Perbaikan Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
